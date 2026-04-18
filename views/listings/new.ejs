@@ -1,0 +1,97 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WonderLust</title>
+  </head> -->
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row">
+    <div class="col-5 offset-3">
+      <br /><br />
+      <h3>Create New Listing</h3>
+      <form
+        method="post"
+        action="/listings"
+        novalidate
+        class="needs-validation"
+      >
+        <div class="md-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            placeholder="Add Title"
+            name="listing[title]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Input Should be Valid</div>
+        </div>
+        <div class="md-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            type="text"
+            name="listing[description]"
+            class="form-control"
+            required
+          ></textarea>
+          <div class="invalid-feedback">Input Should be Valid</div>
+        </div>
+
+        <div class="md-3">
+          <label for="image" class="form-label">Image Link</label>
+          <input
+            type="text"
+            placeholder="Enter URL/LINK"
+            name="listing[image]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Input Should be Valid</div>
+        </div>
+        <div class="row">
+          <div class="md-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="number"
+              placeholder="Eg: 1200"
+              name="listing[price]"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Input Should be Valid</div>
+          </div>
+          <div class="md-3 col-md-8">
+            <label for="location" class="form-label">Location</label>
+            <input
+              type="text"
+              placeholder="Delhi, Mumbai"
+              name="listing[location]"
+              class="form-control"
+              required
+            />
+            <div class="invalid-feedback">Input Should be Valid</div>
+          </div>
+        </div>
+
+        <div class="md-3">
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            placeholder="India"
+            name="listing[country]"
+            class="form-control"
+            required
+          />
+          <div class="invalid-feedback">Input Should be Valid</div>
+        </div>
+        <br /><br />
+
+        <button class="btn btn-dark add-btn">Add</button>
+        <br /><br />
+      </form>
+    </div>
+  </div>
+</body>
+<!-- </html> -->

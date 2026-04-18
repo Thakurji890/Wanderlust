@@ -1,0 +1,42 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderLust</title>
+  </head> -->
+  <% layout("/layouts/boilerplate") %>
+  <body>
+    <h3>All Listings</h3>
+    <!-- beacouse we added navbar.ejs file and link options in navbar -->
+    <!-- <form method="get" action="/listings/new">
+      <button>Create New Listings</button>
+    </form> -->
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+      <% for(let list of allListings){ %>
+        <a href="/listings/<%= list._id %>" class="listing-link">
+      <div class="card col listing-card">
+        
+        <img src="<%=list.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+        <div class="card-img-overlay">abc</div>
+        <div class="card-body">
+          <h3><%= list.title %></h3>
+          <p class="card-text"><%=list.description%> <br> <b>&#8377; <%= list.price.toLocaleString('en-IN') %> / Night</b></p>
+        </div>
+      </div>
+      </a>
+    <% } %>
+    </div>
+    
+
+</body>
+
+
+
+    <!-- <ul>
+      <% for(let list of allListings){ %>
+        <li><a href="/listings/<%= list._id %>"><%= list.title %></a></li>
+      <% } %>
+    </ul>
+  </body> -->
+<!-- </html> -->
