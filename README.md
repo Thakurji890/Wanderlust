@@ -16,3 +16,15 @@
 # Deleting Listing
 
     Delete Middleware for reviews
+
+# Miscellaneous
+
+    Topic cover
+        Express Router
+        Cookies
+
+# Express Router
+
+    Express Routers are a way to organise our express application such that our primary app.js file does not become bloated
+
+    const router = express.Router() -> create new router object
