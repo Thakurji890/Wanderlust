@@ -111,5 +111,12 @@
 
 ## CONNECT FLASH
 
-    connect-flash
+    connect-flash    - > npm i connect-flash
+
+    app.use(flash(key:value))
+
+        it is a also a middleware that actully working for flashing the messages once after that it will disappear once it appear in web
+
         the flash is special area of the session used for storing messages. Messages are written to the flash and cleared after displayed to the user.
+
+        it also used redirecting the page it stored on sessions
