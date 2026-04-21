@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 
-// If { merrgeparams } is not defined that it will throw an erro becouse
+// If { mergeparams } is not defined that it will throw an erro becouse
 // when we hit the submit button on the review then it will not redirect that id
 // that defined in app.js -- > so becouse of mergeparams it is possible
 //  to access the id
