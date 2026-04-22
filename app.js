@@ -7,6 +7,10 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
+
 // using router
 const listings = require("./routes/listing.js");
 const reviews = require("./routes/review.js");
@@ -50,11 +54,29 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
+// passport is reuired session for remebering the user
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 // middlware
 app.use((req, res, next) => {
   res.locals.success = req.flash("success")[0];
   res.locals.error = req.flash("error")[0];
   next();
+});
+
+app.get("/userdemo", async (req, res) => {
+  let fakeUser = new User({
+    email: "abc@gmail.com",
+    username: "abc",
+  });
+
+  let newUser = await User.register(fakeUser, "abc");
+
+  res.send(newUser);
 });
 
 // it is use from ./routes/listing.js

@@ -120,3 +120,56 @@
         the flash is special area of the session used for storing messages. Messages are written to the flash and cleared after displayed to the user.
 
         it also used redirecting the page it stored on sessions
+
+## AUTHENTICATION
+
+    Authentication is the process of verifying who someone is
+
+## AUTHORIZATION
+
+    Authorization is the process of verifying what specific applications , files and data a user has access to
+
+## Stroing Password
+
+    we never store the password as it is . we store their hashed form.
+
+    password  --->  hashing function   ---> how it is stored
+    "helloworld" ---                    --- a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e
+
+## Hashing
+
+    for every input there is a fixed output
+
+    they are one-way function we cant get input from output
+
+    for a different input there is a different output but of the same length
+
+    small chnages in input should bring large changes in output
+
+    eg: SHA256 , MD5 , CRC , BCRYPT
+
+## SALTING
+
+    password salting is technique to protect passwords stored in data base by adding a string of 32 or more characters and then hashing them
+
+## PASSPORT
+
+    npm i passport
+
+    npm i passport-local
+
+    npm i passport-local-mongoose
+
+    and much more logIn/signUp through multiple plateform
+
+## configuring strategy
+
+    passport.initialize()
+
+        a middleware that initializes passport
+
+    passport.session()
+
+        A web application needs the ability to identify users as they browse from page to page. this series of requests and response , each associated with the same user, is know as a session
+
+    passport.use(new LocalStrategy(User.authenticate()))
