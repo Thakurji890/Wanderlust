@@ -173,3 +173,9 @@
         A web application needs the ability to identify users as they browse from page to page. this series of requests and response , each associated with the same user, is know as a session
 
     passport.use(new LocalStrategy(User.authenticate()))
+
+## connecting login route
+
+    how to check if user is logged in?
+
+    req.isAuthenticated()

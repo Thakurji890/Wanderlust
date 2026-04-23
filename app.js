@@ -12,8 +12,9 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 // using router
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -65,23 +66,25 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success")[0];
   res.locals.error = req.flash("error")[0];
+  res.locals.currUser = req.user;
   next();
 });
 
-app.get("/userdemo", async (req, res) => {
-  let fakeUser = new User({
-    email: "abc@gmail.com",
-    username: "abc",
-  });
+// app.get("/userdemo", async (req, res) => {
+//   let fakeUser = new User({
+//     email: "abc@gmail.com",
+//     username: "abc",
+//   });
 
-  let newUser = await User.register(fakeUser, "abc");
+//   let newUser = await User.register(fakeUser, "abc");
 
-  res.send(newUser);
-});
+//   res.send(newUser);
+// });
 
 // it is use from ./routes/listing.js
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
+app.use("/listings", listingRouter);
+app.use("/listings/:id/reviews", reviewRouter);
+app.use("/", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Woring perfect");
