@@ -7,6 +7,9 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const flash = require("connect-flash");
 
+const morgan = require("morgan");
+const logger = require("./utils/logger.js");
+
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
@@ -25,6 +28,8 @@ const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
 
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(morgan("dev")); // Log to console
+app.use(morgan("combined", { stream: logger.stream })); // Log to file
 
 const MONGOOSE_URL = "mongodb://127.0.0.1:27017/wanderlust";
 main()
@@ -95,6 +100,7 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+  logger.error(err);
   let { statusCode = 500, message = "Something Went Wrong!" } = err;
   // res.status(statusCode).send(message);
   res.status(statusCode).render("listings/error.ejs", { err });
