@@ -16,6 +16,7 @@
         action="/listings"
         novalidate
         class="needs-validation"
+        enctype="multipart/form-data"
       >
         <div class="md-3">
           <label for="title" class="form-label">Title</label>
@@ -40,15 +41,14 @@
         </div>
 
         <div class="md-3">
-          <label for="image" class="form-label">Image Link</label>
+          <label for="image" class="form-label">Upload Listing Image</label>
           <input
-            type="text"
-            placeholder="Enter URL/LINK"
-            name="listing[image][url]"
+            type="file"
+            name="listing[image]"
             class="form-control"
             required
           />
-          <div class="invalid-feedback">Input Should be Valid</div>
+          <div class="invalid-feedback">Image is Required!</div>
         </div>
         <div class="row">
           <div class="md-3 col-md-4">

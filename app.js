@@ -1,3 +1,8 @@
+//  to require dotenv
+if (process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -41,12 +46,12 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(MONGOOSE_URL);
+  await mongoose.connect(process.env.MONGOOSE_URL);
 }
 
 // Sessions options
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -106,6 +111,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("listings/error.ejs", { err });
 });
 
-app.listen(5500, () => {
-  console.log("App is running on port 5500 🚀");
+app.listen(process.env.PORT, () => {
+  console.log(`App is running on port ${process.env.PORT}`);
 });

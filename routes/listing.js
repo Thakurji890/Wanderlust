@@ -14,32 +14,58 @@ const {
   deleteListing,
 } = require("../controller/listings.js");
 
-// Index Route
-router.get("/", wrapAsync(index));
+const { storage } = require("../cloudConfig.js");
+const multer = require("multer");
+const upload = multer({ storage });
 
 // 1 new
 router.get("/new", isLoggedIn, newForm);
 
-// Show Route
-router.get("/:id", wrapAsync(showListing));
+router
+  .route("/")
+  .get(wrapAsync(index))
 
-// 2 Create Route
-router.post("/", isLoggedIn, validateListing, wrapAsync(createListing));
+  .post(
+    isLoggedIn,
+    upload.single("listing[image]"),
+    validateListing,
+    wrapAsync(createListing),
+  );
+
+// middleware for multer to upload files
+// .post(upload.single("listing[image][url]"), (req, res) => {
+//   res.send(req.file);
+// });
+
+router
+  .route("/:id")
+  .get(wrapAsync(showListing))
+  .put(isLoggedIn, isOwner, validateListing, wrapAsync(updateListing))
+  .delete(isLoggedIn, isOwner, wrapAsync(deleteListing));
 
 // Edit Route
 router.get("/:id/edit", isLoggedIn, isOwner, wrapAsync(editListing));
 
+// Index Route
+// router.get("/", wrapAsync(index));
+
+// Show Route
+// router.get("/:id", wrapAsync(showListing));
+
+// 2 Create Route
+// router.post("/", isLoggedIn, validateListing, wrapAsync(createListing));
+
 // Update Route
-router.put(
-  "/:id",
-  isLoggedIn,
-  isOwner,
-  validateListing,
-  wrapAsync(updateListing),
-);
+// router.put(
+//   "/:id",
+//   isLoggedIn,
+//   isOwner,
+//   validateListing,
+//   wrapAsync(updateListing),
+// );
 
 // Delete Route
 
-router.delete("/:id", isLoggedIn, isOwner, wrapAsync(deleteListing));
+// router.delete("/:id", isLoggedIn, isOwner, wrapAsync(deleteListing));
 
 module.exports = router;

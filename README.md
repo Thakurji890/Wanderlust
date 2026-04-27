@@ -96,18 +96,18 @@
     app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 // Access the session as req.session
-// app.get('/', function(req, res, next) {
-// if (req.session.views) {
-// req.session.views++
-// res.setHeader('Content-Type', 'text/html')
-// res.write('<p>views: ' + req.session.views + '</p>')
-// res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
-// res.end()
-// } else {
-// req.session.views = 1
-// res.end('welcome to the session demo. refresh!')
-// }
-// })
+app.get('/', function(req, res, next) {
+if (req.session.views) {
+req.session.views++
+res.setHeader('Content-Type', 'text/html')
+res.write('<p>views: ' + req.session.views + '</p>')
+res.write('<p>expires in: ' + (req.session.cookie.maxAge / 1000) + 's</p>')
+res.end()
+} else {
+req.session.views = 1
+res.end('welcome to the session demo. refresh!')
+}
+})
 
 ## CONNECT FLASH
 
@@ -179,3 +179,38 @@
     how to check if user is logged in?
 
     req.isAuthenticated()
+
+## Image Upload
+
+    main problem in mongodb that file cann't store becouse it has limit
+    - size limit
+    - sending files is not allowed
+
+
+    -- stroing files likes -
+    1. form capable of sebding files
+    2. mongox - 3rd party service
+    3. other cloud based storage will give the link of the file
+    and it will store in mongodb as link
+
+    MANIPULATION FORM
+        enctpe="mutlipart/form-data"
+        // <div>
+        //     <label for="image">Upload Image</label>
+        //     <input type="file">
+        // </div>
+        --- npm multer to use the uploading files
+
+## IMORTANT TOPIC
+
+    ## CLOUD SETUP
+        Cloudinary & .env file
+
+        using .env variable to install dotenv
+        -- require("dotenv").config();
+
+## store Files
+
+    multer store clodinary
+
+    npm i cloudinary multer-storage-cloudinary
