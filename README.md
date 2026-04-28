@@ -214,3 +214,19 @@ res.end('welcome to the session demo. refresh!')
     multer store clodinary
 
     npm i cloudinary multer-storage-cloudinary
+
+## GeoCoding
+
+    GeoCoding is the process of converting address(like s street address ) into geographic coordinated (like latitude and longitude ), which you can use to place marers on a map , or position the map
+
+
+## Storing geoCoding in schema
+
+    geoJSON
+    schema = {
+        location : "String",
+        geometry : {
+            type : "String",
+            coordinates : [Number]
+        }  
+    }  
