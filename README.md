@@ -219,7 +219,6 @@ res.end('welcome to the session demo. refresh!')
 
     GeoCoding is the process of converting address(like s street address ) into geographic coordinated (like latitude and longitude ), which you can use to place marers on a map , or position the map
 
-
 ## Storing geoCoding in schema
 
     geoJSON
@@ -228,5 +227,13 @@ res.end('welcome to the session demo. refresh!')
         geometry : {
             type : "String",
             coordinates : [Number]
-        }  
-    }  
+        }
+    }
+
+## Adding filter
+
+    model listing
+        category : {
+        type:string
+        enum : ["moutains",...]
+        }
