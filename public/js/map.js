@@ -4,7 +4,7 @@ const map = new mapboxgl.Map({
   container: "map",
   style: "mapbox://styles/mapbox/streets-v12",
   center: (listing.geometry && listing.geometry.coordinates && listing.geometry.coordinates.length) ? listing.geometry.coordinates : [77.2090, 28.6139], 
-  zoom: 9,
+  zoom: 9, 
 });
 
 const marker = new mapboxgl.Marker({ color: "red" })
@@ -15,4 +15,4 @@ const marker = new mapboxgl.Marker({ color: "red" })
       <p>Exact Location will be provided after booking</p>`
     )
   )
-  .addTo(map);  
+  .addTo(map); 
