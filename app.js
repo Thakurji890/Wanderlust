@@ -1,3 +1,6 @@
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 //  to require dotenv
 if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
@@ -36,7 +39,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(morgan("dev")); // Log to console
 app.use(morgan("combined", { stream: logger.stream })); // Log to file
 
-const MONGOOSE_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLAS_URL;
 main()
   .then((res) => {
     console.log("Database working perfect🚀");
@@ -46,7 +49,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(process.env.MONGOOSE_URL);
+  await mongoose.connect(dbUrl);
 }
 
 // Sessions options
