@@ -1,5 +1,5 @@
-const dns = require('dns');
-dns.setServers(['8.8.8.8', '8.8.4.4']);
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 //  to require dotenv
 if (process.env.NODE_ENV != "production") {
@@ -13,6 +13,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 
 const morgan = require("morgan");
