@@ -13,7 +13,7 @@ const path = require("path");
 const methodOverride = require("method-override");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo").MongoStore;
 const flash = require("connect-flash");
 
 const morgan = require("morgan");
@@ -53,8 +53,21 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
+// Mongo sessions
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+store.on("error", () => {
+  console.log("Error Stroing session Store ", err);
+});
+
 // Sessions options
 const sessionOptions = {
+  store,
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,

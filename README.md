@@ -237,3 +237,7 @@ res.end('welcome to the session demo. refresh!')
         type:string
         enum : ["moutains",...]
         }
+
+## touchAfter
+
+    that use for store users info in browser so that user should not again again login
