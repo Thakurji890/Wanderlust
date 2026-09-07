@@ -57,7 +57,7 @@
             res.send(`hii, ${name}`)
         });
 
-# Signed cookies
+# Signed cookies -- it basically stores users information that useful for login and signin 
 
     send signed cookie
 
